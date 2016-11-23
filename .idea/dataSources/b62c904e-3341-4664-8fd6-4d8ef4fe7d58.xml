@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - test@www.palagend.com.cn">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="test">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <table id="3" parent="1" name="address">
+      <comment>收获地址表; InnoDB free: 8192 kB</comment>
+    </table>
+    <table id="4" parent="1" name="admin">
+      <comment>administrator</comment>
+    </table>
+    <table id="5" parent="1" name="e_receive_address">
+      <comment>收获地址表; InnoDB free: 8192 kB</comment>
+    </table>
+    <table id="6" parent="1" name="employee"/>
+    <table id="7" parent="1" name="goods"/>
+    <table id="8" parent="1" name="t_employees"/>
+    <table id="9" parent="1" name="user"/>
+    <table id="10" parent="1" name="account">
+      <comment>账户</comment>
+    </table>
+    <table id="11" parent="1" name="finance_log">
+      <comment>财务日志</comment>
+    </table>
+    <column id="12" parent="3" name="PK_ID">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="13" parent="3" name="FK_USER_ID">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="14" parent="3" name="RECEIVE_NAME">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="15" parent="3" name="RECEIVE_ADDRESS">
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <column id="16" parent="3" name="POSTAL_CODE">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="17" parent="3" name="MOBIE">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="18" parent="3" name="PHONE">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="19" parent="3" name="EMAIL">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="20" parent="3" name="PAYMENT">
+      <comment>1,货到付款；2.在线支付；</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="21" parent="3" name="STATUS">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="22" parent="3" name="IS_DONE">
+      <comment>1.未处理；2.处理通过；3.处理不通过</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="23" parent="3" name="IS_VALID">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="24" parent="3" name="CREATE_DATE">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="25" parent="3" name="UPDATE_DATE">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="26" parent="3" name="B1">
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <column id="27" parent="3" name="B2">
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <column id="28" parent="3" name="B3">
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <key id="29" parent="3" name="PRIMARY">
+      <columns>PK_ID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="30" parent="4" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="31" parent="4" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="32" parent="4" name="password">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="33" parent="4" name="admin_name_uindex">
+      <columns>name</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="34" parent="4" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="35" parent="4" name="admin_name_uindex">
+      <columns>name</columns>
+      <underlying-index>admin_name_uindex</underlying-index>
+    </key>
+    <column id="36" parent="5" name="PK_ID">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="37" parent="5" name="FK_USER_ID">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="38" parent="5" name="RECEIVE_NAME">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="39" parent="5" name="RECEIVE_ADDRESS">
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <column id="40" parent="5" name="POSTAL_CODE">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="41" parent="5" name="MOBIE">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="42" parent="5" name="PHONE">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="43" parent="5" name="EMAIL">
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="44" parent="5" name="PAYMENT">
+      <comment>1,货到付款；2.在线支付；</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="45" parent="5" name="STATUS">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="46" parent="5" name="IS_DONE">
+      <comment>1.未处理；2.处理通过；3.处理不通过</comment>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="47" parent="5" name="IS_VALID">
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;1&apos;</default-expression>
+    </column>
+    <column id="48" parent="5" name="CREATE_DATE">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="49" parent="5" name="UPDATE_DATE">
+      <data-type>datetime|0</data-type>
+    </column>
+    <key id="50" parent="5" name="PRIMARY">
+      <columns>PK_ID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="51" parent="6" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="52" parent="6" name="name">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="53" parent="6" name="password">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="54" parent="6" name="phone">
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="55" parent="6" name="sex">
+      <data-type>varchar(2)|0</data-type>
+    </column>
+    <key id="56" parent="6" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="57" parent="7" name="goodsId">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="58" parent="7" name="price">
+      <mandatory>1</mandatory>
+      <data-type>double(10,2)|0</data-type>
+    </column>
+    <column id="59" parent="7" name="goodName">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <key id="60" parent="7" name="PRIMARY">
+      <columns>goodsId</columns>
+      <primary>1</primary>
+    </key>
+    <column id="61" parent="8" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="62" parent="8" name="first_name">
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="63" parent="8" name="last_name">
+      <data-type>varchar(30)|0</data-type>
+    </column>
+    <column id="64" parent="8" name="username">
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="65" parent="8" name="password">
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="66" parent="8" name="gender">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="67" parent="8" name="birthday">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="68" parent="8" name="job">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="69" parent="8" name="salary">
+      <data-type>decimal(12,2)|0</data-type>
+    </column>
+    <key id="70" parent="8" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="71" parent="9" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="72" parent="9" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="73" parent="9" name="password">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="74" parent="9" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="75" parent="10" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="76" parent="10" name="code">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="77" parent="10" name="name">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="78" parent="10" name="type">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="79" parent="10" name="value">
+      <data-type>decimal(10)|0</data-type>
+    </column>
+    <column id="80" parent="10" name="currency">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="81" parent="10" name="user_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="82" parent="10" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="83" parent="11" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="84" parent="11" name="date_time">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="85" parent="11" name="from_account">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="86" parent="11" name="to_account">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="87" parent="11" name="type">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="88" parent="11" name="amount">
+      <data-type>decimal(10)|0</data-type>
+    </column>
+    <column id="89" parent="11" name="currency">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="90" parent="11" name="description">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="91" parent="11" name="user_id">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <key id="92" parent="11" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

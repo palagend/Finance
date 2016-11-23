@@ -42,12 +42,12 @@ public interface UserService {
     public boolean register(User user);
     
     /**
-     * 根据用户名查找用户
+     * 判断用户是否存在
      * @param name
      * @return
      * @Adder by Administrator 2013-2-18 上午10:54:49
      */
-    public boolean getUserByName(String name);
+    public boolean exists(String name);
     
     /**
      * 根据id删除用户
@@ -71,11 +71,19 @@ public interface UserService {
      * @Adder by Administrator 2013-2-18 下午5:40:32
      */
     public void updateUser(User user);
-    
+
+    /**
+     * 修改密码
+     * @param user
+     */
+    public void modifyPassword(User user);
+
     /**
      * 查询所有的用户信息，用分页显示
      * @return
      * @Adder by Administrator 2013-2-19 上午11:49:22
      */
     public Page queryAllUser(Page page);
+
+    User getUserByName(String name);
 }

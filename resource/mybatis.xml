@@ -6,6 +6,9 @@
 	<typeAliases >
 		<typeAlias type ="com.hoo.entity.Goods" alias ="Goods" />
 		<typeAlias type="com.hoo.entity.User" alias="User"/>
+		<typeAlias type="com.hoo.entity.Admin" alias="Admin"/>
+		<typeAlias type="com.hoo.entity.Account" alias="Account"/>
+		<typeAlias type="com.hoo.entity.FinanceLog" alias="FinanceLog"/>
 	</typeAliases >
 	
 	<plugins>

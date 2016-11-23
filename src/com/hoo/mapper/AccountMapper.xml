@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoo.mapper.AccountMapper">
+
+    <!--  java 对象与数据库字段对应，如果数据库字段与java对象属性名称一样，可以不写 -->
+    <resultMap type="Account" id="RM.Account">
+        <result column="id" property="id" javaType="int"/>
+        <result column="name" property="name" javaType="string"/>
+        <result column="code" property="code" javaType="string"/>
+        <result column="type" property="type" javaType="int"/>
+        <result column="currency" property="currency" javaType="int"/>
+        <result column="user_id" property="userId" javaType="int"/>
+        <result column="value" property="value" javaType="decimal"/>
+    </resultMap>
+
+    <!-- 查询语句，parameterType为sql语句参数的类型,resultType 为执行这个 语句的返回类型-->
+
+
+    <select id="getById" parameterType="int" resultMap="RM.Account">
+        select id,name,code,type,user_id,value from account where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="Account">
+        insert into account(id,code,name,type,currency,user_id,value) values(#{id},#{code},#{name},#{type},#{currency},#{userId},#{value});
+    </insert>
+
+    <select id="queryAllAccounts" resultMap="RM.Account">
+        select id,code,name,type,currency,user_id,value from account
+    </select>
+    <select id="queryMyAccounts" resultMap="RM.Account" parameterType="int">
+        select id,code,name,type,currency,user_id,value from account where user_id=#{userId}
+    </select>
+    <select id="queryByUserId" resultMap="RM.Account">
+        select id,code,name,type,currency,user_id,value from account where user_id=#{userId}
+    </select>
+
+    <update id="update" parameterType="Account">
+        update account set name=#{name},type=#{type},code=#{code},value=#{value},user_id=#{userId},currency=#{currency} where id=#{id}
+    </update>
+
+
+    <delete id="deleteById" parameterType="int">
+        delete from account where id=#{id}
+    </delete>
+
+    <delete id="deleteByCode" parameterType="string">
+        delete from account where code=#{code}
+    </delete>
+
+    <delete id="deleteByUserId" parameterType="int">
+        delete from account where user_id=#{userId}
+    </delete>
+
+</mapper>   

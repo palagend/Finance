@@ -28,8 +28,7 @@ public class PropertyBean extends PropertyPlaceholderConfigurer {
         resolvedProps = new HashMap<String, String>();
         for (Object key : props.keySet()) {
             String keyStr = key.toString();
-            String keyVal = props.getProperty(keyStr); 
-            keyVal = parseStringValue(props.getProperty(keyStr), props, new HashSet()); 
+            String keyVal = parseStringValue(props.getProperty(keyStr), props, new HashSet());
             resolvedProps.put(keyStr, keyVal);
         }
     }

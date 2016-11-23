@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoo.mapper.FinanceLogMapper">
+    <resultMap type="FinanceLog" id="RM.FinanceLog">
+        <result column="id" property="id" javaType="int"/>
+        <result column="date_time" property="dateTime" javaType="date"/>
+        <result column="from_account" property="from" javaType="int"/>
+        <result column="to_account" property="to" javaType="int"/>
+        <result column="type" property="type" javaType="int"/>
+        <result column="currency" property="currency" javaType="int"/>
+        <result column="user_id" property="userId" javaType="int"/>
+        <result column="amount" property="amount" javaType="decimal"/>
+        <result column="description" property="description" javaType="string"/>
+    </resultMap>
+
+    <select id="queryAllByTypeSince" resultMap="RM.FinanceLog">
+        select * from finance_log where type=#{type,jdbcType=VARCHAR} and date_time &gt; #{date_time,jdbcType=DATE}
+    </select>
+</mapper>

@@ -23,6 +23,7 @@ import org.apache.ibatis.plugin.Signature;
 public class SQLInterceptor implements Interceptor {
 	
     public Object intercept(Invocation invocation) throws Throwable {
+
     	 RoutingStatementHandler statementHandler = (RoutingStatementHandler)invocation.getTarget(); 
     	 BoundSql boundSql = statementHandler.getBoundSql();
     	 BaseStatementHandler delegate = (BaseStatementHandler) ReflectHelper.getValueByFieldName(statementHandler, "delegate");

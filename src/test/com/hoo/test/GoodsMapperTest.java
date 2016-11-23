@@ -4,7 +4,7 @@
  * GoodsMapperTest.java
  */
 
-package test;
+package com.hoo.test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +26,7 @@ import com.hoo.mapper.GoodsMapper;
 @ContextConfiguration("classpath:applicationContext-*.xml")
 public class GoodsMapperTest extends AbstractJUnit38SpringContextTests{
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private GoodsMapper goodsMapper;
     

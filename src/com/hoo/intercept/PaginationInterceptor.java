@@ -42,19 +42,19 @@ import cn.org.rapid_framework.util.PropertiesHelper;
 /**
  * 参考rapid-framework(hibernate也是使用这种这种分页方式)
  * 资料参考：http://zhaohe162.blog.163.com/blog/static/38216797201131262952990/
- * 
+ *
  * @author zhys(13960826213@139.com)
  * @created 2012-3-20
  */
 // 只拦截select部分
-@Intercepts({@Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) })
+@Intercepts({@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})})
 public class PaginationInterceptor implements Interceptor {
 
     private static Logger log = Logger.getLogger(PaginationInterceptor.class);
 
-	private Dialect dialect;	//数据库方言  
-	
-		
+    private Dialect dialect; //数据库方言
+
+
     public Object intercept(Invocation invocation) throws Throwable {
         try {
             MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
@@ -68,15 +68,15 @@ public class PaginationInterceptor implements Interceptor {
                 Object parameterObject = boundSql.getParameterObject();
                 if (boundSql == null || boundSql.getSql() == null || "".equals(boundSql.getSql()))
                     return null;
-                int totpage = page.getTotalRows();
+                int totalPage = page.getTotalRows();
                 // 得到总记录数
-                if (totpage == 0) { // 对符合条件的数据进行统计 生成总页数
+                if (totalPage == 0) { // 对符合条件的数据进行统计 生成总页数
                     StringBuffer countSql = new StringBuffer(originalSql.length() + 100);
                     countSql.append("select count(1) from (").append(originalSql).append(") t");
                     Connection connection = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();
                     PreparedStatement countStmt = connection.prepareStatement(countSql.toString());
                     BoundSql countBS = new BoundSql(mappedStatement.getConfiguration(), countSql.toString(), boundSql.getParameterMappings(), parameterObject);
-                    
+
                     for (ParameterMapping mapping : boundSql.getParameterMappings()) {
                         String prop = mapping.getProperty();
                         if (boundSql.hasAdditionalParameter(prop)) {
@@ -87,15 +87,15 @@ public class PaginationInterceptor implements Interceptor {
                     setParameters(countStmt, mappedStatement, countBS, parameterObject);
                     ResultSet rs = countStmt.executeQuery();
                     if (rs.next()) {
-                        totpage = rs.getInt(1);
+                        totalPage = rs.getInt(1);
                     }
-                    page.setTotalRows(totpage);
+                    page.setTotalRows(totalPage);
                     rs.close();
                     countStmt.close();
                     connection.close();
                 }
                 // 分页查询 本地化对象 修改数据库注意修改实现 
-                String pagesql = generatePageSql(originalSql,page);
+                String pagesql = generatePageSql(originalSql, page);
                 invocation.getArgs()[2] = new RowBounds(RowBounds.NO_ROW_OFFSET, RowBounds.NO_ROW_LIMIT);
                 BoundSql newBoundSql = new BoundSql(mappedStatement.getConfiguration(), pagesql, boundSql.getParameterMappings(), boundSql.getParameterObject());
                 MappedStatement newMs = copyFromMappedStatement(mappedStatement, new BoundSqlSqlSource(newBoundSql));
@@ -126,36 +126,37 @@ public class PaginationInterceptor implements Interceptor {
         return Plugin.wrap(arg0, this);
     }
 
-    
-	/**
-	 * 根据数据库方言，生成Sql
-	 * @param originalSql
-	 * @param page
-	 * @return
-	 * @throws PropertyException 
-	 */
-	private String generatePageSql(String originalSql, Page page) throws PropertyException {
-			String pageSql = dialect.getLimitString(originalSql, (page.getCurrentPage() - 1)* page.getPageSize(), page.getPageSize());
-			log.debug((page.getCurrentPage() - 1) * page.getPageSize());
-			log.debug(page.getCurrentPage() * page.getPageSize());
-			log.debug(pageSql);
-			return pageSql.toString();
-	}
-	
-	public void setProperties(Properties p) {   
-		String dialectClass = new PropertiesHelper(p).getRequiredString("dialectClass");   
-        try {   
-            dialect = (Dialect)Class.forName(dialectClass).newInstance();   
-        } catch (Exception e) {   
-            throw new RuntimeException("cannot create dialect instance by dialectClass:"+dialectClass,e);   
-        } 
-	}
-	
+
+    /**
+     * 根据数据库方言，生成Sql
+     *
+     * @param originalSql
+     * @param page
+     * @return
+     * @throws PropertyException
+     */
+    private String generatePageSql(String originalSql, Page page) throws PropertyException {
+        String pageSql = dialect.getLimitString(originalSql, (page.getCurrentPage() - 1) * page.getPageSize(), page.getPageSize());
+        log.debug((page.getCurrentPage() - 1) * page.getPageSize());
+        log.debug(page.getCurrentPage() * page.getPageSize());
+        log.debug(pageSql);
+        return pageSql.toString();
+    }
+
+    public void setProperties(Properties p) {
+        String dialectClass = new PropertiesHelper(p).getRequiredString("dialectClass");
+        try {
+            dialect = (Dialect) Class.forName(dialectClass).newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("cannot create dialect instance by dialectClass:" + dialectClass, e);
+        }
+    }
+
 
     /**
      * 对SQL参数(?)设值,参考org.apache.ibatis.executor.parameter.
      * DefaultParameterHandler
-     * 
+     *
      * @param ps
      * @param mappedStatement
      * @param boundSql
@@ -214,5 +215,5 @@ public class PaginationInterceptor implements Interceptor {
         MappedStatement newMs = builder.build();
         return newMs;
     }
-     
+
 }

@@ -21,11 +21,6 @@ public class LoadConfigServlet  extends LoadConfigBaseServlet{
 	public void init(ServletConfig conf) throws ServletException
 	{	
 		super.init(conf);
-		try {
-			super.init(this.getServletConfig());
-		} catch (ServletException e1) {
-			e1.printStackTrace();
-		}
 		super.startApplication();
 	}
 	

@@ -1,8 +1,11 @@
 build/
-.idea/
 .settings/
 out/
-SSMybatis.iml
+
 *.classpath
 *.project
-*.iml
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+*.ipr
+logs/

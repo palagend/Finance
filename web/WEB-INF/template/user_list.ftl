@@ -4,11 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${cssPath}/style.css" type="text/css" rel="stylesheet" />
 <title>Insert title here</title>
-<script type="text/javascript" src="${ctxPath}/js/jquery-1.6.js"></script>
-<script type="text/javascript" src="${ctxPath}/js/user.js"></script>
+<#--<script type="text/javascript" src="${ctxPath}/js/jquery-1.6.js"></script>-->
+<#--<script type="text/javascript" src="${ctxPath}/js/user.js"></script>-->
 </head>
 <body>
- <h2>欢迎<font color="green" size="8px">${user.name}</font>查看用户信息列表:</h2><br>
+ <h2>欢迎<font color="green" size="8px">${admin.name}管理员</font>查看用户信息列表:</h2><br>
    <a href="addUser"><font size="5px">增加用户</font></a> <a href="loginOut" style="margin-left: 140px">退出系统</a><br>
    <#--使用framemaker模板语言输出-->
    <table border="2">
